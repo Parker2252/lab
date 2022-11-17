@@ -1,6 +1,6 @@
 class Account:
     def __init__(self, name: str):
-        self.__account_name = Account(name)
+        self.__account_name = name
         self.__account_balance = 0
 
     def deposit(self, amount: float):
@@ -23,6 +23,6 @@ class Account:
         return self.__account_balance
 
     def get_name(self):
-        return self.__account_balance
+        return self.__account_name
 
 
