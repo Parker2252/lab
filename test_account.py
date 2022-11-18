@@ -1,4 +1,4 @@
-from pytest import *
+import pytest
 from account import *
 
 
@@ -25,7 +25,7 @@ class Test:
         assert self.a1.deposit(0) == False
         assert self.a1.get_balance() == 1
         assert self.a1.deposit(1.5) == True
-        assert self.a1.get_balance() == 2.5 
+        assert self.a1.get_balance() == pytest.approx(2.5, abs=0.001)
 
         assert self.a2.deposit(-1) == False
         assert self.a2.get_balance() == 0
@@ -34,7 +34,7 @@ class Test:
         assert self.a2.deposit(0) == False
         assert self.a2.get_balance() == 1
         assert self.a2.deposit(1.5) == True
-        assert self.a2.get_balance() == 2.5 
+        assert self.a2.get_balance() == pytest.approx(2.5, abs=0.001)
 
     def test_withdraw(self):
         self.a1.deposit(2)
@@ -44,8 +44,12 @@ class Test:
         assert self.a1.get_balance() == 2
         assert self.a1.withdraw(1) == True
         assert self.a1.get_balance() == 1
-        assert self.a1.deposit(1.5) == True
-        assert self.a1.get_balance() == 2.5
+
+        self.a1.deposit(5)
+        assert self.a1.withdraw(1.5) == True
+        assert self.a1.get_balance() == pytest.approx(4.5, abs=0.001)
+
+
 
         self.a2.deposit(2)
         assert self.a2.withdraw(-1) == False
@@ -54,5 +58,7 @@ class Test:
         assert self.a2.get_balance() == 2
         assert self.a2.withdraw(1) == True
         assert self.a2.get_balance() == 1
-        assert self.a2.deposit(1.5) == True
-        assert self.a2.get_balance() == 2.5
+
+        self.a2.deposit(5)
+        assert self.a2.withdraw(1.5) == True
+        assert self.a2.get_balance() == pytest.approx(4.5, abs=0.001)
