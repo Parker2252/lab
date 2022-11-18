@@ -11,7 +11,7 @@ class Account:
         """
         This function increases by the amount given.
         :param amount: Amount added to the account.
-        :return: True if not negative or zero then will be false.
+        :return: True if the amount is not negative or zero then will be false.
         """
         if amount > 0:
             self.__account_balance += amount
